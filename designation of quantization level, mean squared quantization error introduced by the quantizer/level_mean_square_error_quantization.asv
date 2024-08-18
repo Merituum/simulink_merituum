@@ -53,38 +53,35 @@ function [mse, dist] = mean_square_error(functionfcn, a, tol, varargin)
     mse = dist / (length(a) - 1);
 end
 
+
+
+
+
 % EXAMPLE
 % f = @(x) x.^2 + 2;
 % a = [0, 1, 2];
-
+tol = 1e-6;
 % centroid_value = centroid(f, a(1), a(2), tol);
 % disp(['Centroid: ', num2str(centroid_value)]);
 % 
 % [mse_value, dist_value] = mean_square_error(f, a, tol);
 % disp(['MSE: ', num2str(mse_value)]);
 % disp(['Distance: ', num2str(dist_value)]);
+%EXAMPLE 2
+%definition of normal distribution
+f=@(x) (1/sqrt(2*pi))*exp(-0.5*x.^2);
+%signal discribed as a range of numberical sequence
+a=[-5,-4,-2,0,1,2,3,5];
 
+%array that stores centroids
+y=zeros(1,length(a)-1);
 
-
-% EXAMPLE 2: Normal distribution with given quantization intervals
-% Definition of normal distribution N(0,1)
-f = @(x) (1/sqrt(2*pi)) * exp(-0.5 * x.^2);
-
-% Quantization intervals
-a = [-17, -13, -5, 0, 1, 9, 11, 15];
-tol = 1e-6;
-
-% Calculate centroids for each quantization interval
-y = zeros(1, length(a) - 1); % Initialize y array to store centroids
-for i = 1:length(a) - 1
-    y(i) = centroid(f, a(i), a(i + 1), tol); % Directly pass the function handle 'f'
-    disp(y(i));
+for i=1:length(a)-1
+    y(i)=centroid(f', a(i),a(i+1),tol,0,1);
 end
-
-% Plotting the quantized signal
-x = a; % Use the quantization intervals for plotting
-stairs(x, [y, y(end)]); % Extend y to match the x array length
-grid on;
-xlabel('x');
-ylabel('Q(x)');
-title('Quantization of a Gaussian Distributed Signal (N(0,1))');
+    x=a;
+    stairs(x,[y,y(end)]);
+    grid on;
+    xlabel('x');
+    ylabel('Q(x)');
+    title("Quantization of a Gaussian Dist")
