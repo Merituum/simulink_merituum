@@ -1,6 +1,6 @@
 clear;
 clc;
-
+% @TO DO add the calculation of inputed misshape by the quantiziter at even levels of quantization
 function y = centroid(functionfcn, a, b, tol, varargin)
     % varargin are additional parameters given to the function 
     % CENTROID is used to calculate the level of quantization of a function
