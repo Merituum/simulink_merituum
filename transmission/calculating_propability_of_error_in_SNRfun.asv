@@ -1,0 +1,21 @@
+function [y]= Qfunct(x)
+%QFUNCT Evauluates the Q-Function
+%y=1/sqrt(2*pi) * integral from x to inf
+%of exp (-t^2/2) dt
+%y=(1/2) * erfc(x/sqrt(2))
+y=(1/2)*erfc
+
+
+init_snr=0;
+max_snr=20;
+snr_step=0.1;
+snr_dB=init_snr:snr_step:max_snr;
+
+for i=1:length(snr_dB)
+    snr=10.^(snr_dB(i)/10);
+    Pe(i)=Qfunct(sqrt(snr));
+end
+
+semilogy(snr_in_dB,Pe);
+xlabel("10 log 10 E/No"); 
+ylabel("Pe");

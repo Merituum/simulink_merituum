@@ -1,0 +1,24 @@
+function p = smldPe54(snr_in_db)
+%this function calculates the probability of an error in respect to SNR in
+%dB
+
+%parameters of simulation, respectly: number of bits, energy of a signal,
+
+N=1500;
+E=1;
+%conversion from dB scale to linear, compute of sigma
+SNR=10.^(snr_in_db/10);
+sigma_=E/sqrt(2*SNR);
+
+data_source=randi([0,1],1,N);
+noice_0=sigma_*randn(1,N); 
+
+
+
+
+
+%conversion from dB to linear values
+
+
+end
+
