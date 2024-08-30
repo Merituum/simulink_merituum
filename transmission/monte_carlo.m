@@ -3,7 +3,7 @@ clc;
 %COMPARASMENT of theoretical versus simulated error margin
 % echo on 
 % z=input(" ");
-SNRindB1=0:0.1:12;
+SNRindB1=0:1:12;
 SNRindB2=0:0.1:12;
 disp(length(SNRindB2));
 for i=1:length(SNRindB1)
@@ -14,8 +14,8 @@ end
 
 %teoretical error margin
 for x=1:length(SNRindB2)
-    SNR=exp(SNRindB2(i)*log(10)/10);
-    theoretical(i)=q_function_calc(sqrt(SNR));
+    SNR=exp(SNRindB2(x)*log(10)/10);
+    theoretical(x)=q_function_calc(sqrt(SNR));
 end
 
 % disp(length(SNRindB2));
@@ -33,11 +33,11 @@ semilogy(SNRindB1, smltd_err_prb, '*b'); % Blue stars for simulated data
 xlabel('SNR (dB)');
 ylabel('Error Probability');
 grid on;
-
+hold on;
 % Create the second figure for theory
-figure;
-title('Theory');
+% % figure;
+% title('Theory');
 semilogy(SNRindB2, theoretical, 'r'); % Red crosses for theoretical data
-xlabel('SNR (dB)');
-ylabel('Error Probability');
-grid on;
+% xlabel('SNR (dB)');
+% ylabel('Error Probability');
+% grid on;
