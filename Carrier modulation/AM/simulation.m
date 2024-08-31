@@ -3,7 +3,6 @@ if bdIsLoaded('ModulacjaAMModel')
     close_system('ModulacjaAMModel', 0); % 0 oznacza zamknięcie bez zapisywania
 end
 
-
 % Nazwa modelu
 modelName = 'ModulacjaAMModel';
 
@@ -41,3 +40,13 @@ open_system(modelName);
 
 % Uruchomienie symulacji
 simOut = sim(modelName);
+% Sprawdzenie zawartości Workspace
+% whos
+% vars = who;
+% disp(vars);
+% Sprawdzenie dostępnych sygnałów w obiekcie Simulink.SimulationOutput
+disp(simOut);
+
+% Wyświetlenie wszystkich dostępnych elementów
+elements = simOut.get('ScopeData');  % Przykładowa nazwa, sprawdź rzeczywistą nazwę
+disp(elements);
